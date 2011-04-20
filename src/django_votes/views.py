@@ -2,6 +2,7 @@ from django.http import (HttpResponseForbidden, HttpResponse,
                          HttpResponseRedirect,)
  
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import User
 
 def _api_view(func):
     def view(request):
@@ -15,7 +16,7 @@ def _api_view(func):
             object_id = request.POST['object_id']
             instance = model.objects.get(id=object_id)
             # View
-            result = func(request, instance)
+            result = func(request, instance, user)
 
             if result:
                 return result
@@ -31,7 +32,8 @@ def _api_view(func):
     return view
 
 @_api_view
-def down_vote(request, instance):    
+def down_vote(request, instance):
+    instances.votes    
     instance.down_votes += 1
     instance.save()
     

@@ -16,11 +16,9 @@ class VotesField(object):
 
     def contribute_to_class(self, cls, name):
         self._name = name
-        models.signals.class_prepared.connect(self.finalize, sender=cls)
-
-    def finalize(self, sender, **kwargs):
-        descriptor = self._create_Vote_model(sender)
-        setattr(sender, self._name, descriptor)
+        
+        descriptor = self._create_Vote_model(cls)
+        setattr(cls, self._name, descriptor)
 
     def _create_Vote_model(self, model):
         class VoteMeta(ModelBase):
