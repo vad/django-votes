@@ -8,7 +8,7 @@ setup(
     long_description = open('README','r').read(),
     author = 'Maarten Timmerman, City Live nv',
     packages = find_packages('src'),
-    package_data = {'django_votes: [
+    package_data = {'django_votes': [
                 'static/*.js', 'static/*/*.js', 'static/*/*/*.js',
                 'static/*.css', 'static/*/*.css', 'static/*/*/*.css',
                 'static/*.png', 'static/*/*.png', 'static/*/*/*.png', 'static/*/*/*/*.png',
