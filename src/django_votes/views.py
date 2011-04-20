@@ -3,8 +3,6 @@ from django.http import (HttpResponseForbidden, HttpResponse,
  
 from django.contrib.contenttypes.models import ContentType
 
-from django_votes.utils import get_vote_model
-
 def _api_view(func):
     def view(request):
         if request.method == 'POST':
