@@ -10,7 +10,8 @@ def _api_view(func):
         if request.method == 'POST':
             # Get comments model
             model_name = request.POST['model']
-            model = get_vote_model(model_name)          
+            ct = ContentType.objects.get(model=model_name)
+            model = ct.model_class()     
             object_id = request.POST['object_id']
             instance = model.objects.get(id=object_id)
             # View
