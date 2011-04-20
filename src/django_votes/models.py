@@ -3,7 +3,7 @@ from django.db.models.base import ModelBase
 from django.utils.translation import (ugettext_lazy as _, ugettext)
 from django.contrib.auth.models import User
 
-_vote_models = []
+_vote_models = {}
 
 class VotesField(object):
     """
@@ -36,9 +36,9 @@ class VotesField(object):
 
                 vote_model = ModelBase.__new__(c, name, bases, attrs)
                 
-                _vote_models.append(vote_model)
+                _vote_models[vote_model.get_model_name()] = vote_model
                 
-                return vote_model
+                return vote_model            
 
         rel_nm_user = '%s_votes' % model._meta.object_name.lower()
 
@@ -64,6 +64,10 @@ class VotesField(object):
                           'object': self.object}
                 
                 return "%(voter)s %(like)s %(object)s" % values
+            
+            @classmethod
+            def get_model_name(self):
+                return '%s.%s' % (self._meta.app_label, self._meta.object_name)            
 
 
         class VoteFieldDescriptor(object):
