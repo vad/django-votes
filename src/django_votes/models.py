@@ -82,7 +82,7 @@ class VoteModel(models.Model):
     Every model which needs votes should inherit this abstract model.
     """
     
-    votes = VotesField(verbose_name=_('votes'))
+    votes = VotesField()
         
     class Meta:
         verbose_name = _('vote')
