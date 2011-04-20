@@ -4,19 +4,18 @@ from django.http import (HttpResponseForbidden, HttpResponse,
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 
+from django_votes.utils import get_vote_model
+
 def _api_view(func):
     def view(request):
         if request.method == 'POST':
             # Get comments model
             model_name = request.POST['model']      
-            app = model_name.split('.')[0]
-            model = model_name.split('.')[1]    
-            ct = ContentType.objects.get(model=model, app_label=app)
-            model = ct.model_class()     
+            model = get_vote_model(model_name)   
+              
             object_id = request.POST['object_id']
-            instance = model.objects.get(id=object_id)
             # View
-            result = func(request, instance, user)
+            result = func(request, model, object_id)
 
             if result:
                 return result
@@ -32,14 +31,17 @@ def _api_view(func):
     return view
 
 @_api_view
-def down_vote(request, instance):
-    instances.votes    
-    instance.down_votes += 1
-    instance.save()
+def down_vote(request, model, object_id):
+    if model.objects.filter(object__id=object_id, voter=request.user).count() == 0:
+        model.objects.create(object_id=object_id, 
+                             voter=request.user,
+                             value=-1)
     
 @_api_view
-def up_vote(request, instance):    
-    instance.up_votes += 1
-    instance.save()
+def up_vote(request, model, object_id):    
+    if model.objects.filter(object__id=object_id, voter=request.user).count() == 0:
+        model.objects.create(object_id=object_id, 
+                             voter=request.user,
+                             value=1)
     
     

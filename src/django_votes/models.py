@@ -3,6 +3,8 @@ from django.db.models.base import ModelBase
 from django.utils.translation import (ugettext_lazy as _, ugettext)
 from django.contrib.auth.models import User
 
+_vote_models = []
+
 class VotesField(object):
     """
     Usage:
@@ -32,7 +34,11 @@ class VotesField(object):
                 # This attribute is required for a model to function properly in Django.
                 attrs['__module__'] = model.__module__
 
-                return ModelBase.__new__(c, name, bases, attrs)
+                vote_model = ModelBase.__new__(c, name, bases, attrs)
+                
+                _vote_models.append(vote_model)
+                
+                return vote_model
 
         rel_nm_user = '%s_votes' % model._meta.object_name.lower()
 
@@ -44,7 +50,7 @@ class VotesField(object):
 
             voter = models.ForeignKey(User, verbose_name=_('voter'))
             value = models.IntegerField(default=1, verbose_name=_('value'))            
-            date = models.DateField(db_index=True, verbose_name=_('voted on'))
+            date = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name=_('voted on'))
             object = models.ForeignKey(model, verbose_name=_('object'))
             
             class Meta:
@@ -74,19 +80,3 @@ class VotesField(object):
                     return Vote.objects
 
         return VoteFieldDescriptor()
-        
-class VoteModel(models.Model):
-    """
-    Every model which needs votes should inherit this abstract model.
-    """
-    
-    votes = VotesField()
-        
-    class Meta:
-        verbose_name = _('vote')
-        verbose_name_plural = _('votes')
-        abstract = True
-            
-    @classmethod
-    def get_state_model_name(self):
-        return '%s.%s' % (self._meta.app_label, self._meta.object_name)
