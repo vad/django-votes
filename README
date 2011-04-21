@@ -1,1 +1,83 @@
-TODO
+===========================================================
+Django Votes (V1)
+===========================================================
+
+Author: Maarten Timmerman, City Live NV
+
+Description: 
+	Voting field and management views for rating. Usuable with any 
+	django model.  
+	
+Usage example:
+	- Add the VoteField to your model:
+	
+	> from django.db import models
+	> from django_votes.models import VoteField
+	> 
+	> class MyModel(models.Model):
+	> 	votes = VoteField()   
+	>	... (other fields of this model)
+	
+	To use the views for up voting and down voting you include the urls.py in your website's url patterns:
+	
+	> import django_votes.urls
+	> from django.conf.urls.defaults import *
+	>
+	> urlpatterns = patterns('',
+	>	url(r'^votes/', include(django_votes.urls)),
+	> )
+	
+	Now you can use these views in your templates for down and up voting your objects:
+	
+	> {% url my_result_view object.id as result_url %}
+	>
+	> <div class="votes" x:id="{{object.id}}" x:model-name="{{object.votes.model.get_model_name}}" x:url="{{result_url}}">
+	>	<ul>
+	>		<li><a href="#" class="vote-up" x:url="{% url votes_up_vote %}">{% trans "Vote up" %}</a></li>
+	>		<li><a href="#" class="vote-down" x:url="{% url votes_down_vote %}">{% trans "Vote down" %}</a></li>
+	>	</ul>
+	>	<div class="vote-results" style="display:none">				
+	>	</div>
+	> </div>
+	>
+	> <script type="text/javascript">
+	>	$(function () {
+	>		$(this).find('.votes').each(function(){
+	>			var id = $(this).attr('x:id');
+	>			var model_name = $(this).attr('x:model-name');
+	>			var result_url = $(this).attr('x:url');
+	>			
+	>			$(this).find('.vote-up').live('click', function(){
+	>				var url = $(this).attr('x:url');
+	>				
+	>				$.ajax({type:'POST',
+	>						url: url,
+	>						data: {'model': model_name, 'object_id': id},
+	>						success : function() {							
+	>							$('.vote-results').load(result_url);
+	>							$('.vote-results').slideDown();
+	>						}});
+	>						
+	>				return false;
+	>			});
+	>			$(this).find('.vote-down').live('click', function(){
+	>				var url = $(this).attr('x:url');
+	>				
+	>				$.ajax({type:'POST',
+	>						url: url,
+	>						data: {'model': model_name, 'object_id': id},
+	>						success : function() {
+	>							$('.vote-results').load(result_url);
+	>							$('.vote-results').slideDown();
+	>						}});
+	>						
+	>				return false;
+	>			});
+	>		});
+	>	});
+	> </script>
+	
+	
+    
+	
+	
