@@ -15,7 +15,7 @@ class UpDownVoteNode(template.Node):
         dictionary = {'object': object,
                       'model_name': object.votes.model.get_model_name}
 
-        return render_to_string('django_votes/updownvote.html', dictionary)
+        return render_to_string('django_votes/updownvote.html', dictionary, context_instance=context)
 
 @register.tag
 def updown_vote(parser, token):
