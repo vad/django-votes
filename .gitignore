@@ -8,3 +8,5 @@ src/deals/src
 pip-log.txt
 *.tmp*
 Thumbs.db
+*.sass-cache*
+*.css
