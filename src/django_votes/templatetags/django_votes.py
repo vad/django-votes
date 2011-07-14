@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 register = template.Library()
 
 class UpDownVoteNode(template.Node):
-    def __init__(self, object, return_url):
+    def __init__(self, object):
         self.object = object
 
     def render(self, context):
@@ -13,7 +13,7 @@ class UpDownVoteNode(template.Node):
         object = v.resolve(context)
 
         dictionary = {'object': object,
-                      'model_name': objects.votes.model.get_model_name}
+                      'model_name': object.votes.model.get_model_name}
 
         return render_to_string('django_votes/updownvote.html', dictionary)
 
