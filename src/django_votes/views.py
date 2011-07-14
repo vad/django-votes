@@ -63,8 +63,7 @@ def vote_result(request, model_name, object_id):
                                     value__gt=0).count()
     down_votes = model.objects.filter(object__id=object_id,
                                       value__lt=0).count()
-    total_votes = model.objects.filter(object__id=object_id,
-                                       count())
+    total_votes = model.objects.filter(object__id=object_id).count())
 
 
     context = {'up_votes': up_votes,
