@@ -6,5 +6,23 @@
 @import "compass/reset";
 
 .django-votes {
-    background-color:red;
+    .votes-overview {
+        width:200px;
+        
+        .up-votes, .down-votes {
+            height:20px;
+        }     
+        
+        .up-votes {
+            float:left;
+            background-color:#457960;
+            border: 1px solid #f0f2f3;
+        }   
+        
+        .down-votes {
+            float:left;
+            background-color:red;
+            border: 1px solid #f0f2f3;
+        }
+    }
 }

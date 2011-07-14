@@ -68,7 +68,23 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
-/* line 8, ../sass/screen.scss */
-.django-votes {
+/* line 9, ../sass/screen.scss */
+.django-votes .votes-overview {
+  width: 200px;
+}
+/* line 12, ../sass/screen.scss */
+.django-votes .votes-overview .up-votes, .django-votes .votes-overview .down-votes {
+  height: 20px;
+}
+/* line 16, ../sass/screen.scss */
+.django-votes .votes-overview .up-votes {
+  float: left;
+  background-color: #457960;
+  border: 1px solid #f0f2f3;
+}
+/* line 22, ../sass/screen.scss */
+.django-votes .votes-overview .down-votes {
+  float: left;
   background-color: red;
+  border: 1px solid #f0f2f3;
 }
