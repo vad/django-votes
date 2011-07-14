@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<div class="django-votes" x:id="{{object.id}}" x:model-name="{{model_name}}" x:url="{% url votes_vote_result {{result_url}}">
+    <ul>
+        <li><a href="#" class="vote-up" x:url="{% url votes_up_vote %}">
+            <img src="{{ STATIC_URL }}django_votes/img/vote-up.png"
+                alt="{% trans "Vote up" %}" />
+            </a></li>
+        <li><a href="#" class="vote-down" x:url="{% url votes_down_vote %}">
+            <img src="{{ STATIC_URL }}django_votes/img/vote-down.png"
+                alt="{% trans "Vote down" %}" />
+            </a></li>
+    </ul>
+    <div class="vote-results" style="visibility:hidden;">
+    </div>
+</div>

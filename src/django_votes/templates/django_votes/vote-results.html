@@ -1,0 +1,35 @@
+{% load i18n %}
+
+{% if your_vote %}
+<div class="your-vote">
+    {% if your_vote.value > 0 %}
+    {% trans "You like this. Thank you for your feedback!" %}
+    {% else %}
+    {% trans "You don't like this. Thank you for your feedback!" %}
+    {% endif %}     
+</div>
+{% endif %}
+<div class="vote-separator"></div>
+<div class="vote-total">
+    {% blocktrans with total_votes as total_votes %}{{total_votes}} <strong>{% trans "votes in total" %}</strong>{% endblocktrans %}
+</div>
+<div class="vote-result">    
+    <div class="vote-count">
+        {{up_votes}}
+    </div>
+    {% if up_votes %}
+    <div class="vote-bar up" style="width:{% if up_votes > 1000 %}1000{% else %}{{up_votes}}{% endif %}px;">
+        &nbsp;        
+    </div>
+    {% endif %}
+</div>
+<div class="vote-result">
+    <div class="vote-count">
+        {{down_votes}}
+    </div>
+    {% if down_votes %}
+    <div class="vote-bar down" style="width:{% if down_votes > 1000 %}1000{% else %}{{down_votes}}{% endif %}px;">
+        &nbsp;        
+    </div>
+    {% endif %}
+</div>

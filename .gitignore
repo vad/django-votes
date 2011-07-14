@@ -1,0 +1,10 @@
+*.pyc
+.project
+.pydevproject
+dist/
+build/
+.settings/*
+src/deals/src
+pip-log.txt
+*.tmp*
+Thumbs.db
