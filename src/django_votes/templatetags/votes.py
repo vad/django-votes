@@ -4,6 +4,8 @@ from django.template.loader import render_to_string
 
 register = template.Library()
 
+from django_votes.models import VotesField
+
 class UpDownVoteNode(template.Node):
     def __init__(self, object):
         self.object = object
