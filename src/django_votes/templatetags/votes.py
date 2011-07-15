@@ -20,11 +20,11 @@ class UpDownVoteNode(template.Node):
 
         model = get_vote_model(model_name)
 
-        total_votes = model.objects.filter(object_id=object.id).count()
+        total_votes = model.objects.filter(object__id=object.id).count()
 
-        up_votes = model.objects.filter(object_id=object.id,
+        up_votes = model.objects.filter(object__id=object.id,
                                         value=1).count()
-        down_votes = model.objects.filter(object_id=object.id,
+        down_votes = model.objects.filter(object__id=object.id,
                                         value= -1).count()
 
         up_pct = float(up_votes) / float(total_votes)
