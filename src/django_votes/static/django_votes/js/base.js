@@ -35,4 +35,30 @@ $(function(){
             }
         });
     }    
-})();
+    
+    $('.rating').each(function(){    
+        $(this).find('.star').each(function(){
+            $(this).click(function(){
+                var parent = $(this).parent();
+                var static_url = parent.attr('x:static-url');                
+                var index = $(this).attr('x:index');                
+                var gray = static_url + 'django_votes/img/gray_star.png';
+                var yellow = static_url + 'django_votes/img/star.png';
+                
+                parent.find('.star').each(function(){
+                    var idx = $(this).attr('x:index');
+                    if (idx <= index)
+                    {
+                        $(this).attr('src', yellow);
+                    }      
+                    else
+                    {
+                        $(this).attr('src', gray);
+                    }              
+                });                
+                                                            
+                return false;
+            });
+        });           
+    });
+});

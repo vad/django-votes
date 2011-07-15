@@ -12,20 +12,20 @@ class VoteNode(template.Node):
     def __init__(self, object):
         self.object = object
 
-    def get_info(context):
+    def get_info(self, context):
         v = Variable(self.object)
         object = v.resolve(context)
 
         self.model_name = '%s.%sVote' % (object._meta.app_label,
                                          object._meta.object_name,)
 
-        self.model = get_vote_model(model_name)
+        self.model = get_vote_model(self.model_name)
 
         return object
 
 class UpDownVoteNode(VoteNode):
     def render(self, context):
-        object = get_info(context)
+        object = self.get_info(context)
 
         total_votes = self.model.objects.filter(object__id=object.id).count()
 
@@ -50,7 +50,7 @@ class UpDownVoteNode(VoteNode):
 
 class RatingVoteNode(VoteNode):
     def render(self, context):
-        object = get_info(context)
+        object = self.get_info(context)
 
         avg = self.model.objects.filter(object__id=object.id).aggregate(value=Avg('value'))
 

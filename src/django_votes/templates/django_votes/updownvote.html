@@ -1,5 +1,10 @@
 {% load i18n %}
-<div style="width:100px;height:20px;background-color:green" class="test-block">
+<div class="rating" x:static-url="{{STATIC_URL}}">
+    <img src="{{STATIC_URL}}django_votes/img/gray_star.png" x:index="0" class="star">
+    <img src="{{STATIC_URL}}django_votes/img/gray_star.png" x:index="1" class="star">
+    <img src="{{STATIC_URL}}django_votes/img/gray_star.png" x:index="2" class="star">
+    <img src="{{STATIC_URL}}django_votes/img/gray_star.png" x:index="3" class="star">
+    <img src="{{STATIC_URL}}django_votes/img/gray_star.png" x:index="4" class="star">
 </div>
 <div class="updownvotes" x:id="{{object.id}}" x:model-name="{{model_name}}">
     <div class="vote-buttons">
