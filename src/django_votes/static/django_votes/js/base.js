@@ -2,13 +2,12 @@ $(function(){
     load();
     
     function load(){
-        $('.django-votes').each(function(){
+        $('.updownvotes').each(function(){
             var id = $(this).attr('x:id');
             var model_name = $(this).attr('x:model-name');
             var result_url = $(this).attr('x:url');
         
             $(this).find('.vote-up').live('click', function(){
-                alert('ok');
                 var url = $(this).attr('x:url');
         
                 $.ajax({type:'POST',
@@ -30,7 +29,7 @@ $(function(){
             });
             
             function loadResults(data) {
-                $('.django-votes').replaceWith(data);
+                $('.updownvotes').replaceWith(data);
                 $('.vote-results').slideDown();
                 load();
             }

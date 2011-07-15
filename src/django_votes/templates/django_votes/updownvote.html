@@ -1,13 +1,14 @@
 {% load i18n %}
-
-<div class="django-votes" x:id="{{object.id}}" x:model-name="{{model_name}}">
+<div style="width:100px;height:20px;background-color:green" class="test-block">
+</div>
+<div class="updownvotes" x:id="{{object.id}}" x:model-name="{{model_name}}">
     <div class="vote-buttons">
         <ul>
-            <li><a href="#" class="vote-up" x:url="{% url votes_up_vote %}">
+            <li><a href="#" class="vote-up" x:url="{% url votes_vote_up %}">
                 <img src="{{ STATIC_URL }}django_votes/img/vote-up.png"
                     alt="{% trans "Vote up" %}" />
                 </a></li>
-            <li><a href="#" class="vote-down" x:url="{% url votes_down_vote %}">
+            <li><a href="#" class="vote-down" x:url="{% url votes_vote_down %}">
                 <img src="{{ STATIC_URL }}django_votes/img/vote-down.png"
                     alt="{% trans "Vote down" %}" />
                 </a></li>
