@@ -58,20 +58,30 @@ def vote_result(request, model_name, object_id):
     model = get_vote_model(model_name)
 
     your_vote = model.objects.filter(voter=request.user)
+
     if your_vote:
         your_vote = your_vote[0]
+
+    object = model.objects.select_related('object').filter(object__id=object_id)[:1][0].object
+
     up_votes = model.objects.filter(object__id=object_id,
                                     value__gt=0).count()
     down_votes = model.objects.filter(object__id=object_id,
                                       value__lt=0).count()
     total_votes = model.objects.filter(object__id=object_id).count()
 
+    up_pct = (float(up_votes) / float(total_votes) if total_votes else 0) * 98
+    down_pct = (float(down_votes) / float(total_votes) if total_votes else 0) * 98
 
-    context = {'up_votes': up_votes,
+    context = {'model_name': model_name,
+               'object': object,
+               'up_votes': up_votes,
                'down_votes': down_votes,
                'your_vote': your_vote,
-               'total_votes': total_votes}
+               'total_votes': total_votes,
+               'up_pct': up_pct,
+               'down_pct': down_pct}
 
-    return render_to_response('django_votes/vote-results.html',
+    return render_to_response('django_votes/updownvote.html',
                               context,
                               context_instance=RequestContext(request))

@@ -6,23 +6,25 @@
 @import "compass/reset";
 
 .django-votes {
+    margin-top:10px;
+    
     .votes-overview {
         width:200px;
-        margin-left:20px;
-        margin-top:20px;
+        margin-left:10px;
+        margin-top:10px;
+        float:left;
         
         .up-votes, .down-votes {
             height:20px;
+            float:left;
         }     
         
-        .up-votes {
-            float:left;
+        .up-votes {            
             background-color:#457960;
             border: 1px solid #f0f2f3;
         }   
         
         .down-votes {
-            float:left;
             background-color:red;
             border: 1px solid #f0f2f3;
         }
@@ -32,7 +34,7 @@
         float:left;
     }
     
-    .vote-results {
+    .vote-results {        
         clear:both;
         
         .vote-count {

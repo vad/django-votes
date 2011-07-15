@@ -27,15 +27,20 @@ class UpDownVoteNode(template.Node):
         down_votes = model.objects.filter(object__id=object.id,
                                         value= -1).count()
 
-        up_pct = float(up_votes) / float(total_votes)
-        down_pct = float(down_votes) / float(total_votes)
+        up_pct = (float(up_votes) / float(total_votes) if total_votes else 0) * 98
+        down_pct = (float(down_votes) / float(total_votes) if total_votes else 0) * 98
 
         dictionary = {'object': object,
                       'model_name': model_name,
                       'up_pct': up_pct,
-                      'down_pct': down_pct}
+                      'down_pct': down_pct,
+                      'up_votes': up_votes,
+                      'down_votes': down_votes,
+                      'total_votes': total_votes}
 
-        return render_to_string('django_votes/updownvote.html', dictionary, context_instance=context)
+        result = render_to_string('django_votes/updownvote.html', dictionary, context_instance=context)
+        print result
+        return result
 
 @register.tag
 def updown_vote(parser, token):
