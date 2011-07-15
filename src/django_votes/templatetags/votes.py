@@ -22,9 +22,9 @@ class UpDownVoteNode(template.Node):
 
         total_votes = model.objects.filter(object_id=object.id).count()
 
-        up_votes = model.objects.filter(object_id=object_id,
+        up_votes = model.objects.filter(object_id=object.id,
                                         value=1).count()
-        down_votes = model.objects.filter(object_id=object_id,
+        down_votes = model.objects.filter(object_id=object.id,
                                         value= -1).count()
 
         up_pct = float(up_votes) / float(total_votes)
