@@ -4,10 +4,11 @@ from django.http import (HttpResponseForbidden, HttpResponse,
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 
-from django_votes.utils import get_vote_model
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
+
+from django_votes.utils import get_vote_model
 
 def _api_view(func):
     def view(request):

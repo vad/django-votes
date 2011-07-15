@@ -14,22 +14,13 @@ class UpDownVoteNode(template.Node):
         v = Variable(self.object)
         object = v.resolve(context)
 
-        model_name = ''
+        model_name = '%s.%sVote' % (object._meta.app_label,
+                                    object._meta.object_name,)
 
-        import pdb; pdb.set_trace()
+        dictionary = {'object': object,
+                      'model_name': model_name}
 
-        for field in object._meta.fields:
-            if isinstance(field, VotesField):
-                model_name = field.model.get_model_name()
-                break;
-
-        if model_name:
-            dictionary = {'object': object,
-                          'model_name': model_name}
-
-            return render_to_string('django_votes/updownvote.html', dictionary, context_instance=context)
-
-        return ''
+        return render_to_string('django_votes/updownvote.html', dictionary, context_instance=context)
 
 @register.tag
 def updown_vote(parser, token):
