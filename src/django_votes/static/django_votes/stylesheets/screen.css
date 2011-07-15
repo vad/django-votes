@@ -71,20 +71,44 @@ footer, header, hgroup, menu, nav, section {
 /* line 9, ../sass/screen.scss */
 .django-votes .votes-overview {
   width: 200px;
+  margin-left: 20px;
+  margin-top: 20px;
 }
-/* line 12, ../sass/screen.scss */
+/* line 14, ../sass/screen.scss */
 .django-votes .votes-overview .up-votes, .django-votes .votes-overview .down-votes {
   height: 20px;
 }
-/* line 16, ../sass/screen.scss */
+/* line 18, ../sass/screen.scss */
 .django-votes .votes-overview .up-votes {
   float: left;
   background-color: #457960;
   border: 1px solid #f0f2f3;
 }
-/* line 22, ../sass/screen.scss */
+/* line 24, ../sass/screen.scss */
 .django-votes .votes-overview .down-votes {
   float: left;
+  background-color: red;
+  border: 1px solid #f0f2f3;
+}
+/* line 31, ../sass/screen.scss */
+.django-votes .vote-buttons {
+  float: left;
+}
+/* line 35, ../sass/screen.scss */
+.django-votes .vote-results {
+  clear: both;
+}
+/* line 38, ../sass/screen.scss */
+.django-votes .vote-results .vote-count {
+  font-weight: bold;
+}
+/* line 44, ../sass/screen.scss */
+.django-votes .vote-results .vote-bar.up {
+  background-color: #457960;
+  border: 1px solid #f0f2f3;
+}
+/* line 48, ../sass/screen.scss */
+.django-votes .vote-results .vote-bar.down {
   background-color: red;
   border: 1px solid #f0f2f3;
 }

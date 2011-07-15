@@ -8,6 +8,8 @@
 .django-votes {
     .votes-overview {
         width:200px;
+        margin-left:20px;
+        margin-top:20px;
         
         .up-votes, .down-votes {
             height:20px;
@@ -21,6 +23,29 @@
         
         .down-votes {
             float:left;
+            background-color:red;
+            border: 1px solid #f0f2f3;
+        }
+    }
+    
+    .vote-buttons {
+        float:left;
+    }
+    
+    .vote-results {
+        clear:both;
+        
+        .vote-count {
+            font-weight:bold;
+        }
+        
+        .vote-bar {            
+        }
+        .vote-bar.up {
+            background-color:#457960;
+            border: 1px solid #f0f2f3;
+        }
+        .vote-bar.down {
             background-color:red;
             border: 1px solid #f0f2f3;
         }
