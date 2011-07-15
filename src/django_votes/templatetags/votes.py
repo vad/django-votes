@@ -20,7 +20,7 @@ class UpDownVoteNode(template.Node):
 
         model = get_vote_model(model_name)
 
-        total_votes = model.objects.filter(object_id=object_id).count()
+        total_votes = model.objects.filter(object_id=object.id).count()
 
         up_votes = model.objects.filter(object_id=object_id,
                                         value=1).count()
