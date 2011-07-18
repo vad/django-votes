@@ -69,50 +69,59 @@ footer, header, hgroup, menu, nav, section {
 }
 
 /* line 8, ../sass/screen.scss */
-.django-votes {
+.updownvotes {
   margin-top: 10px;
 }
 /* line 11, ../sass/screen.scss */
-.django-votes .votes-overview {
+.updownvotes .votes-overview {
   width: 200px;
   margin-left: 10px;
   margin-top: 10px;
   float: left;
 }
 /* line 17, ../sass/screen.scss */
-.django-votes .votes-overview .up-votes, .django-votes .votes-overview .down-votes {
+.updownvotes .votes-overview .up-votes, .updownvotes .votes-overview .down-votes {
   height: 20px;
   float: left;
 }
 /* line 22, ../sass/screen.scss */
-.django-votes .votes-overview .up-votes {
+.updownvotes .votes-overview .up-votes {
   background-color: #457960;
   border: 1px solid #f0f2f3;
 }
 /* line 27, ../sass/screen.scss */
-.django-votes .votes-overview .down-votes {
+.updownvotes .votes-overview .down-votes {
   background-color: red;
   border: 1px solid #f0f2f3;
 }
 /* line 33, ../sass/screen.scss */
-.django-votes .vote-buttons {
+.updownvotes .vote-buttons {
   float: left;
 }
 /* line 37, ../sass/screen.scss */
-.django-votes .vote-results {
+.updownvotes .vote-results {
   clear: both;
 }
 /* line 40, ../sass/screen.scss */
-.django-votes .vote-results .vote-count {
+.updownvotes .vote-results .vote-count {
   font-weight: bold;
 }
 /* line 46, ../sass/screen.scss */
-.django-votes .vote-results .vote-bar.up {
+.updownvotes .vote-results .vote-bar.up {
   background-color: #457960;
   border: 1px solid #f0f2f3;
 }
 /* line 50, ../sass/screen.scss */
-.django-votes .vote-results .vote-bar.down {
+.updownvotes .vote-results .vote-bar.down {
   background-color: red;
   border: 1px solid #f0f2f3;
+}
+
+/* line 58, ../sass/screen.scss */
+.rating-container .rating {
+  float: left;
+}
+/* line 62, ../sass/screen.scss */
+.rating-container .rating-title {
+  margin-left: 100px;
 }

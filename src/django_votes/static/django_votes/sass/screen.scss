@@ -51,5 +51,15 @@
             background-color:red;
             border: 1px solid #f0f2f3;
         }
+    }    
+}
+
+.rating-container {
+    .rating {
+        float: left;
     }
+    
+    .rating-title {
+        margin-left: 100px;    
+    }   
 }

@@ -34,30 +34,41 @@ $(function(){
                 load();
             }
         });
-        
+                
+        var rating_types = [gettext('Awful'),
+                            gettext('Poor'),
+                            gettext('Average'),
+                            gettext('Good'),
+                            gettext('Excellent')];
+                            
         $('.rating').each(function(){    
-            $(this).find('.star').each(function(){
-                $(this).click(function(){
-                    var parent = $(this).parent();
-                    var static_url = parent.attr('x:static-url');                
-                    var index = $(this).attr('x:index');                
-                    var gray = static_url + 'django_votes/img/gray_star.png';
-                    var yellow = static_url + 'django_votes/img/star.png';
-                    var url = parent.attr('x:url');
-                    var model_name = parent.attr('x:model-name');
-                    var id = parent.attr('x:id');
+            var parent = $(this);
+            var static_url = $(this).attr('x:static-url');
+            var url = $(this).attr('x:url');
+            var gray = static_url + 'django_votes/img/gray_star.png';
+            var yellow = static_url + 'django_votes/img/star.png';
+            var model_name = $(this).attr('x:model-name');
+            var id = $(this).attr('x:id');
+            var rating = $(this).attr('x:rating');
+            
+            function resetStars(limit) {
+                parent.find('.star').each(function(){
                     
-                    parent.find('.star').each(function(){
-                        var idx = $(this).attr('x:index');
-                        if (idx <= index)
-                        {
-                            $(this).attr('src', yellow);
-                        }      
-                        else
-                        {
-                            $(this).attr('src', gray);
-                        }              
-                    });     
+                    var idx = $(this).attr('x:index');
+                    if (idx <= limit)
+                    {
+                        $(this).attr('src', yellow);
+                    }      
+                    else
+                    {
+                        $(this).attr('src', gray);
+                    }              
+                });
+            }      
+                  
+            $(this).find('.star').each(function(){
+                $(this).click(function(){                                    
+                    var index = $(this).attr('x:index');                                        
                     
                     $.ajax({type:'POST',
                                  url:url,
@@ -67,11 +78,28 @@ $(function(){
                     return false;
                 });
                 
+                $(this).mouseover(function(){                    
+                    var index = $(this).attr('x:index');
+                    
+                    resetStars(index);
+                    
+                    $('.rating-title').text(rating_types[index]);
+                });
+                
                 function loadResults(data) {
-                    $('.rating').replaceWith(data);                
+                    $('.rating-container').replaceWith(data);                
                     load();
                 }
-            });           
+            }).mouseleave(function(){
+                $('.rating-title').text('');   
+                
+                resetStars(rating);               
+            });
         });
+        
+        $('.rating')
+            .live('hover', function(){
+                $(this).css('cursor', 'hand').css('cursor', 'pointer');
+            });                    
     }    
 });
