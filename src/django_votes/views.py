@@ -81,7 +81,7 @@ def rating(request, model, object_id):
                              value=rating)
 
     return HttpResponseRedirect(reverse('votes_rating_result', args=[model.get_model_name(),
-                                                                         object_id]))
+                                                                     object_id]))
 
 def updownvote_result(request, model_name, object_id):
     """

@@ -54,9 +54,9 @@ class RatingVoteNode(VoteNode):
 
         avg = self.model.objects.filter(object__id=object.id).aggregate(value=Avg('value'))
 
-        dictionary = {'rating': avg,
+        dictionary = {'rating': int(avg['value']) if 'value' in avg else None,
                       'object': object,
-                      'model_name': model_name}
+                      'model_name': self.model_name}
 
         return render_to_string('django_votes/rating.html', dictionary, context_instance=context)
 
