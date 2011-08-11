@@ -1,11 +1,15 @@
 $(function(){
     load();
     
+    $(document).bind('tabLoaded', load);
+    $(document).bind('contentLoaded', load);
+    
     function load(){
         $('.updownvotes').each(function(){
             var id = $(this).attr('x:id');
             var model_name = $(this).attr('x:model-name');
             var result_url = $(this).attr('x:url');
+            var container = $(this);
         
             $(this).find('.vote-up').live('click', function(){
                 var url = $(this).attr('x:url');
@@ -29,8 +33,8 @@ $(function(){
             });
             
             function loadResults(data) {
-                $('.updownvotes').replaceWith(data);
-                $('.vote-results').slideDown();
+                container.replaceWith(data);
+                container.find('.vote-results').slideDown();
                 load();
             }
         });
