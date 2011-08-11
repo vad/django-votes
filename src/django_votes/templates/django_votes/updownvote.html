@@ -4,20 +4,19 @@
         <ul>
             <li><a href="#" class="vote-up" x:url="{% url votes_vote_up %}">
                 <img src="{{ STATIC_URL }}django_votes/img/vote-up.png"
-                    alt="{% trans "Vote up" %}" />
-                </a></li>
+                    alt="{% trans "Vote up" %}" /></a> {{up_votes}}</li>
             <li><a href="#" class="vote-down" x:url="{% url votes_vote_down %}">
                 <img src="{{ STATIC_URL }}django_votes/img/vote-down.png"
-                    alt="{% trans "Vote down" %}" />
-                </a></li>
+                    alt="{% trans "Vote down" %}" /></a> {{down_votes}}</li>
         </ul>
     </div>
+    <div style="clear:both;"></div>
+    {% comment %}
     {% if total_votes %}
     <div class="votes-overview">
         <div class="up-votes" style="width:{{up_pct}}%"></div>
         <div class="down-votes" style="width:{{down_pct}}%"></div>
-    </div>        
-    <div style="clear:both;"></div>
+    </div>            
     <div>{% blocktrans with up_votes as up_votes and down_votes as down_votes %}{{up_votes}} likes / {{down_votes}} dislikes{% endblocktrans %}</div>
     {% endif %}
     <div style="clear:both;"></div>
@@ -56,4 +55,5 @@
             {% endif %}
         </div>
     </div>
+    {% endcomment %}
 </div>
