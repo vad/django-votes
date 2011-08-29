@@ -9,13 +9,13 @@ Description:
 	django model.  
 	
 Usage example:
-	- Add the VoteField to your model:
+	- Add the VotesField to your model:
 	
 	> from django.db import models
-	> from django_votes.models import VoteField
+	> from django_votes.models import VotesField
 	> 
 	> class MyModel(models.Model):
-	> 	votes = VoteField()   
+	> 	votes = VotesField()   
 	>	... (other fields of this model)
 	
 	To use the views for up voting and down voting you include the urls.py in your website's url patterns:
