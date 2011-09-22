@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="django-votes",
-    version=(0, 0, 1),
+    version="0.0.1",
     url='https://github.com/citylive/django-votes',
     license='BSD',
     description="Voting system for various things",
